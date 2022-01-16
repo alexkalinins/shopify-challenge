@@ -62,7 +62,7 @@ export default function PostFeed({}) {
 
   return (
     <div className="feedContainer">
-      {posts.length && (
+      {posts.length > 0 && (
         <InfiniteScroll
           dataLength={posts.length}
           next={getMorePosts}
