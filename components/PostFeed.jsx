@@ -4,12 +4,6 @@ import Post from "./Post";
 import { v4 as uuid } from "uuid";
 import axios from "axios";
 
-/*
-Account Email: alex.kalinins@mail.utoronto.ca
-Account ID: 4fe47cb9-ef29-46b1-ad57-f8a8f2921aec
-
-*/
-
 const BASE_REQUEST = "apod?api_key=3CTRs2uf66v56J6LUkotxNGg2VMdL7NuG0JvNCKG";
 
 /**
@@ -25,7 +19,6 @@ const formatDate = (date) => {
 export default function PostFeed({}) {
   const [posts, setPosts] = useState([]);
   const [hasMore, setHasMore] = useState(true);
-  const [hasData, setHasData] = useState(false);
 
   // the end date of the api request. The start date would be 10 days before the end date.
   const [reqEndDate, setReqEndDate] = useState(new Date());
@@ -49,8 +42,6 @@ export default function PostFeed({}) {
         .reverse();
 
       if (posts.length == 0) {
-        console.log("poo");
-
         setPosts(newPosts);
       } else {
         setPosts([...posts, ...newPosts]);
@@ -65,14 +56,9 @@ export default function PostFeed({}) {
   };
 
   useEffect(() => {
-    console.log("First time?");
     getMorePosts();
   }, []);
 
-  useEffect(() => {
-    console.log("has data? ", hasData);
-    console.log("length ", posts.length);
-  }, [hasData]);
 
   return (
     <div className="feedContainer">
@@ -82,7 +68,7 @@ export default function PostFeed({}) {
           next={getMorePosts}
           hasMore={hasMore}
           loader={<h4>Loading...</h4>}
-          endMessage={<h4>Reached the end...</h4>}
+          endMessage={<h4>You've reached the end of space!</h4>}
         >
           {posts.map((post) => (
             <Post key={post.uuid} post={post} />
