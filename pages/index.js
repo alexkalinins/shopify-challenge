@@ -17,6 +17,7 @@ export default function Home() {
         <div className="pageContainer">
           <h1>Spacestagram</h1>
           <h4>by Alex Kalinins</h4>
+          <a href="https://github.com/alexkalinins/shopify-challenge">GitHub</a>
           <PostFeed />
         </div>
       </main>
